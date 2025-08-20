@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('account', function (Blueprint $table) {
             $table->id();
+            $table->integer('number')->unique();
+            $table->decimal('balance', 10, 2)->default(0.00);
             $table->timestamps();
         });
     }
