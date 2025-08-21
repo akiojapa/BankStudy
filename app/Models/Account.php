@@ -9,7 +9,7 @@ class Account extends Model
 {
     use HasFactory;
 
-    protected $table = 'account';
+    protected $table = 'accounts';
 
     protected $fillable = [
         'number',
@@ -21,9 +21,9 @@ class Account extends Model
         return number_format($this->balance, 2, ',', '.');
     }
 
-    public function transactions()
+    public function Transfers()
     {
-        return $this->hasMany(Transaction::class);
+        return $this->hasMany(Transfer::class);
     }
 
 }

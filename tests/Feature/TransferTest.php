@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\PaymentMethodEnum;
 use App\Models\Account;
 
 test('create a transfer successfully', function () {
@@ -19,17 +20,16 @@ test('create a transfer successfully', function () {
     $response->assertCreated()
         ->assertJson([
             'numero_conta' => $account->number,
-            'saldo' => $account->formatted_balance - $value,
+            'saldo' => $account->balance - $value,
         ]);
 
     $this->assertDatabaseCount('transfers', 1);
     $this->assertDatabaseHas('transfers', [
-        'forma_pagamento' => 'P',
-        'numero_conta' => $account->number,
-        'valor' => $value
+        'payment_method' => 'P',
+        'account_id' => $account->id,
+        'value' => $value
     ]);
 });
-
 
 test('create a pix transfer with fee', function() {
 
@@ -49,14 +49,14 @@ test('create a pix transfer with fee', function() {
     $response->assertCreated()
         ->assertJson([
             'numero_conta' => $account->number,
-            'saldo' => $account->formatted_balance - $value,
+            'saldo' => $account->balance - $value,
         ]);
 
     $this->assertDatabaseCount('transfers', 1);
     $this->assertDatabaseHas('transfers', [
-        'forma_pagamento' => 'P',
-        'numero_conta' => $account->number,
-        'valor' => $value
+        'payment_method' => 'P',
+        'account_id' => $account->id,
+        'value' => $value
     ]);
 
 });
@@ -79,14 +79,14 @@ test('create a credit transfer with fee', function() {
     $response->assertCreated()
         ->assertJson([
             'numero_conta' => $account->number,
-            'saldo' => $account->formatted_balance - ($value * 1.05),
+            'saldo' => $account->balance - ($value * PaymentMethodEnum::getFeeByValue('C')),
         ]);
 
     $this->assertDatabaseCount('transfers', 1);
     $this->assertDatabaseHas('transfers', [
-        'forma_pagamento' => 'C',
-        'numero_conta' => $account->number,
-        'valor' => $value
+        'payment_method' => 'C',
+        'account_id' => $account->id,
+        'value' => $value
     ]);
 });
 
@@ -108,14 +108,14 @@ test('create a debit transfer with fee', function() {
     $response->assertCreated()
         ->assertJson([
             'numero_conta' => $account->number,
-            'saldo' => $account->formatted_balance - ($value * 1.02),
+            'saldo' => $account->balance - ($value * PaymentMethodEnum::getFeeByValue('D')),
         ]);
 
     $this->assertDatabaseCount('transfers', 1);
     $this->assertDatabaseHas('transfers', [
-        'forma_pagamento' => 'D',
-        'numero_conta' => $account->number,
-        'valor' => $value
+        'payment_method' => 'D',
+        'account_id' => $account->id,
+        'value' => $value
     ]);
 });
 

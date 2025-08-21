@@ -7,16 +7,16 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Transaction extends Model
+class Transfer extends Model
 {
     use HasFactory;
 
-    protected $table = 'transaction';
+    protected $table = 'transfers';
 
     protected $fillable = [
         'value',
         'payment_method',
-        'account_number',
+        'account_id',
     ];
 
     protected $casts = [

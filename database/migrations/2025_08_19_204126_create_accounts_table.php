@@ -1,7 +1,5 @@
 <?php
 
-use App\Enums\PaymentMethodEnum;
-use App\Models\Account;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,11 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('transaction', function (Blueprint $table) {
+        Schema::create('accounts', function (Blueprint $table) {
             $table->id();
-            $table->decimal('value', 10, 2);
-            $table->enum('payment_method', PaymentMethodEnum::cases());
-            $table->foreignIdFor(Account::class);
+            $table->integer('number')->unique();
+            $table->decimal('balance', 10, 2)->default(0.00);
             $table->timestamps();
         });
     }
@@ -27,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('transaction');
+        Schema::dropIfExists('accounts');
     }
 };

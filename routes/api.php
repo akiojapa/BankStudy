@@ -2,11 +2,12 @@
 
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\TransferController;
+use Illuminate\Support\Facades\Route;
 
-Route::post('/transfer', [TransferController::class, 'store'])
+Route::post('/transacao', [TransferController::class, 'store'])
     ->name('transfer.store');
 
-Route::post('/account', [AccountController::class, 'store'])
+Route::post('/conta', [AccountController::class, 'store'])
     ->name('accounts.store');
 
 Route::get('/conta', [AccountController::class, 'show'])

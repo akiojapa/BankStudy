@@ -6,9 +6,9 @@ use App\Enums\PaymentMethodEnum;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Transaction>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Transfer>
  */
-class TransactionFactory extends Factory
+class TransferFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -19,8 +19,8 @@ class TransactionFactory extends Factory
     {
         return [
             'value' => $this->faker->randomFloat(2, 1, 1000),
-            'payment_method' => $this->faker->randomElement(PaymentMethodEnum::cases()),
-            'account_number' => $this->faker->numberBetween(100000, 999999),
+            'payment_method' => $this->faker->randomElement(PaymentMethodEnum::toArray()),
+            'number' => $this->faker->numberBetween(100000, 999999),
         ];
     }
 }

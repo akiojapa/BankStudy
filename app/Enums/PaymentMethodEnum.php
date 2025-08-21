@@ -21,4 +21,13 @@ enum PaymentMethodEnum: string
         $fees = self::getFeeByPaymentMethod();
         return $fees[$value] ?? null;
     }
+
+    public static function toArray(): array
+    {
+        return [
+            self::DEBIT_CARD->value,
+            self::CREDIT_CARD->value,
+            self::PIX->value,
+        ];
+    }
 }
