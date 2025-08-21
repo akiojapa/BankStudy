@@ -15,8 +15,7 @@ class AccountShowRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'numero_conta' => ['required', 'integer', new ExistsAccount],
-
+            'numero_conta' => ['required', 'integer', new ExistsAccount]
         ];
     }
 }

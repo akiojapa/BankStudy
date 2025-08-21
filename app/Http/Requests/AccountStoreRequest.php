@@ -15,7 +15,14 @@ class AccountStoreRequest extends FormRequest
     {
         return [
             'numero_conta' => ['required', 'integer', 'unique:accounts,number'],
-            'saldo' => ['required', 'numeric', 'min:0'],
+            'saldo' => ['required', 'numeric', 'min:0', 'gte:0']
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'numero_conta.unique' => __('validation.unique_account_number')
         ];
     }
 }

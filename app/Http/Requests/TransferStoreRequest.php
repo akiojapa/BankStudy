@@ -17,7 +17,7 @@ class TransferStoreRequest extends FormRequest
         return [
             'forma_pagamento' => ['required', 'string', 'in:P,D,C'],
             'numero_conta' => ['required', 'integer', new ExistsAccount],
-            'valor' => ['required', 'numeric', 'min:0']
+            'valor' => ['required', 'numeric', 'min:0', 'gte:0']
         ];
     }
 }

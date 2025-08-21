@@ -16,7 +16,7 @@ class AccountResource extends JsonResource
     {
         return [
             'numero_conta' => $this->number,
-            'saldo' => $this->balance,
+            'saldo' => $this->balance
         ];
     }
 }

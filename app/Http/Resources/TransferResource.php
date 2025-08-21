@@ -16,7 +16,7 @@ class TransferResource extends JsonResource
     {
         return [
             'numero_conta' => $this->account->number,
-            'saldo' => (float) $this->account->balance,
+            'saldo' => (float) $this->account->balance
         ];
     }
 }

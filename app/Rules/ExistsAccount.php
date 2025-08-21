@@ -16,7 +16,6 @@ class ExistsAccount implements ValidationRule
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-
         if (!Account::query()->where('number', $value)->exists()) {
             throw new AccountNotFoundException();
         }

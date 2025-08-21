@@ -12,7 +12,7 @@ class InsufficientBalanceException extends Exception
     public function render(): JsonResponse
     {
         return response()->json(
-            ['message' => 'The account does not exist.'],
+            ['message' => __('validation.insufficient_funds')],
             Response::HTTP_NOT_FOUND
         );
     }

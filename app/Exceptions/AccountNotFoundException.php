@@ -11,7 +11,7 @@ class AccountNotFoundException extends Exception
     public function render(): JsonResponse
     {
         return response()->json(
-            ['message' => 'The account does not exist.'],
+            ['message' => __('validation.account_not_found')],
             Response::HTTP_NOT_FOUND
         );
     }

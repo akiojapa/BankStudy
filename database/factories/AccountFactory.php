@@ -18,7 +18,7 @@ class AccountFactory extends Factory
     {
         return [
             'number' => $this->faker->unique()->numberBetween(100000, 999999),
-            'balance' => $this->faker->randomFloat(2, 0, 10000),
+            'balance' => $this->faker->randomFloat(2, 0, 10000)
         ];
     }
 }
