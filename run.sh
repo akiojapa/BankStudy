@@ -45,4 +45,4 @@ $Sail up -d
 echo "✅ Ambiente do Laravel Sail está no ar!"
 echo "   ➜ Para ver os containers: $Sail ps"
 echo "   ➜ Para ver logs:          $Sail logs -f"
-echo "   ➜ Para rodar testes:      $Sail test --testSuite=Feature"
+echo "   ➜ Para rodar testes:      $Sail test"
